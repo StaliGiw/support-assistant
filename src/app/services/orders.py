@@ -1,5 +1,17 @@
-"""Работа с заказами. Здесь ты пишешь учебную логику самостоятельно."""
+def get_order_status(order: dict):
+    return order.get("status", "unknown")
 
-# Первое задание: перенеси сюда свою функцию get_order_status(order).
-# Она возвращает status, а при отсутствии ключа — "unknown".
-# Не путай отсутствующий ключ и существующее пустое значение.
+def can_cancel_order(order: dict):
+	res = get_order_status(order)
+	return res == "new"
+order_1 = {"status": "new", "id": 101}
+order_2 = {"id": 102}
+
+print(can_cancel_order(order_1))
+print(can_cancel_order(order_2))
+
+if can_cancel_order(order_1) == True:
+	order_1["status"] = "cancelled"
+else:
+	print("Отмена не доступна")
+
